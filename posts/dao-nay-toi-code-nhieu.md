@@ -1,6 +1,6 @@
 ---
 title: Dạo này tôi code nhiều
-date: 2022-01-02
+date: 2022-03-15
 ---
 Ý tôi khi nói nhiều, không phải là nhiều theo cách đếm thông thường, mà là cách tính dựa trên hoàn cảnh.
 
