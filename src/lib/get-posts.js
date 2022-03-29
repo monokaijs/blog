@@ -5,7 +5,7 @@ import readingTime from 'reading-time/lib/reading-time.js'
 
 // we require some server-side APIs to parse all metadata
 if (browser) {
-  throw new Error(`get-posts.js should not be used on the browser, fetch from /posts.json instead`)
+  throw new Error(`get-posts.js should not be used on the browser, fetch from /posts instead`)
 }
 
 /**
@@ -14,7 +14,7 @@ if (browser) {
  * This should only be used on the server, as some of the metadata we add requires
  * being on node (see `posts` below).
  *
- * For getting posts from the client, fetch from the /posts.json endpoint instead
+ * For getting posts from the client, fetch from the /posts endpoint instead
  */
 export function getPosts({ page = 1, limit } = {}) {
   if (limit) {

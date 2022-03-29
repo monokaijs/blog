@@ -22,7 +22,7 @@
     fetchPostsParams.set('page', page)
     fetchPostsParams.set('limit', limit)
 
-    const posts = await fetch(`/posts.json?${fetchPostsParams.toString()}`).then((res) =>
+    const posts = await fetch(`/posts?${fetchPostsParams.toString()}`).then((res) =>
       res.json()
     )
 

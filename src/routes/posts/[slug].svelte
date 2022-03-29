@@ -5,8 +5,8 @@
   export async function load({ params, fetch }) {
     const { slug } = params
 
-    // fetch posts from endpoint so that it includes all metadata (see posts.json.js for explanation)
-    const posts = await fetch('/posts.json').then((res) => res.json())
+    // fetch posts from endpoint so that it includes all metadata (see posts.js for explanation)
+    const posts = await fetch('/posts').then((res) => res.json())
     const post = posts.find((post) => slug === post.slug)
 
     if (!post) {
@@ -25,7 +25,7 @@
       props: {
         ...post,
         component: component.default,
-        recentPosts: await fetch('/posts.json?limit=2').then((res) => res.json())
+        recentPosts: await fetch('/posts?limit=2').then((res) => res.json())
       }
     }
   }
