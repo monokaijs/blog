@@ -1,5 +1,5 @@
 ---
-title: \[P2\] Sống với nghề lập trình
+title: P2. Sống với nghề lập trình
 date: 2022-02-16
 ---
 Đây là một bài viết chuyện phiếm không liên quan tới kỹ thuật hay lập trình, chỉ mang tính trao đổi và tâm sự.

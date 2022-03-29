@@ -1,5 +1,5 @@
 ---
-title: \[P2\] Sống với nghề lập trình - Mở đầu
+title: P1. Sống với nghề lập trình - Mở đầu
 date: 2022-01-30
 ---
 Vì nội dung này rất dài, cho nên mình chia nó ra làm nhiều bài. Bài đầu tiên mình sẽ nói một cách "sơ sơ" và tổng quan về những gì bạn sẽ phải học, sẽ phải tiếp thu trong quá trình học lập trình. Suốt series này, mình sẽ cung cấp cho các bạn các thông tin cần thiết để có thể theo đuổi được lập trình một cách lâu dài nhất có thể.
