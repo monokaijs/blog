@@ -1,40 +1,35 @@
 @tailwind base;
-
-@layer utilities {
-  .focus {
-    @apply outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-300;
-  }
-}
-
-.prose img {
-  @apply rounded-md shadow-md dark:shadow-slate-900;
-}
-
-.prose video {
-  @apply rounded-md shadow-md dark:shadow-slate-900;
-}
-
-.prose pre {
-  @apply shadow-md dark:shadow-slate-900;
-}
-
-hr {
-  @apply !border-slate-300 dark:!border-slate-700;
-}
-
-button {
-  @apply rounded-md;
-  @apply focus;
-}
-
-a {
-  @apply rounded-sm;
-  @apply focus;
-}
-
-svg {
-  @apply outline-none focus:outline-none;
-}
-
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply text-slate-900 dark:bg-slate-900 dark:text-slate-50 dark:selection:bg-slate-600;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme("colors.slate.400") theme("colors.slate.200");
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-slate-200;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-slate-400;
+  border-radius: 6px;
+}
+
+html.dark *::-webkit-scrollbar-track {
+  @apply bg-slate-600;
+}
+html.dark *::-webkit-scrollbar-thumb {
+  @apply bg-slate-400;
+}
+
+html.dark * {
+  scrollbar-color: theme("colors.slate.400") theme("colors.slate.600");
+}

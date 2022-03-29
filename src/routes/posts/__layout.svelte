@@ -59,10 +59,27 @@
   $: hasNextPage = posts[posts.length - 1]?.previous
 </script>
 
-<svelte:head>
-  <title>{name} | Posts</title>
-</svelte:head>
+<div class="flex h-screen relative">
 
-<p class="text-center p-8 text-2xl text-slate-300 dark:text-slate-700">Select a post to read</p>
+  <section
+    class="w-full h-full md:min-w-[400px] md:w-1/4 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col py-3 overflow-y-auto scroll-area">
+    <a href="/posts">
+      <h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Posts</h2>
+    </a>
+    <div class="space-y-2.5">
+      {#each posts as post}
+        <a class="block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href={`/posts/${post.slug}`}>
+          <h3 class="text-lg font-semibold mb-0.5">{post.title}</h3>
+          <div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+            {@html post.preview.html}
+          </div>
+        </a>
+      {/each}
+    </div>
+  </section>
 
+  <main class="hidden md:grid h-screen place-items-center flex-1">
+    <slot/>
+  </main>
 
+</div>

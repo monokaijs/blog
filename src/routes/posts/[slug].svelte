@@ -24,10 +24,13 @@
     return {
       props: {
         ...post,
-        component: component.default
+        component: component.default,
+        recentPosts: await fetch('/posts.json?limit=2').then((res) => res.json())
       }
     }
   }
+
+  export const prerender = true;
 </script>
 
 <script>
@@ -78,84 +81,15 @@
   <meta name="twitter:description" content={preview.text} />
   <meta name="twitter:image" content={ogImage} />
 </svelte:head>
+<div class="overflow-y-auto h-screen w-full">
+  <article class="px-6 py-20 w-full mx-auto prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
 
-<article class="relative">
-  <h1 class="!mt-0 !mb-2">
-    <a class="!font-medium" href={$page.url.pathname}>
-      {title}
-    </a>
-  </h1>
-  <div class="opacity-70">
-    <time datetime={new Date(parseISO(date)).toISOString()}
-      >{format(new Date(parseISO(date)), 'MMMM d, yyyy')}</time
-    >
-    •
-    <span>{readingTime}</span>
-  </div>
+    <h1 class="!mb-2">{title}</h1>
+    <p class="text-sm text-slate-500 !mb-8">
+      {date}
+    </p>
+    <!-- <img class="rounded max-w-full mx-auto mb-4" src="{{ . }}" alt="{{ $title }}" /> -->
 
-  <div class="relative">
-    <!-- render the post -->
     <svelte:component this={component} />
-
-    <!-- table of contents -->
-    <div class="hidden xl:block absolute not-prose left-[100%]" aria-label="Table of Contents">
-      <div class="fixed z-10 px-4 py-2 ml-8 top-[4.5rem]">
-        <!-- ignore h1 tags as they should only be used for the post title -->
-        <ToC allowedHeadings={['h2', 'h3', 'h4', 'h5', 'h6']} />
-      </div>
-    </div>
-  </div>
-</article>
-
-<div class="pt-12 flex justify-between">
-  <ButtonLink href={`/posts`}>
-    <slot slot="icon-start">
-      <ArrowLeftIcon class="h-5 w-5" />
-    </slot>
-    Back to Posts
-    <slot slot="icon-end" />
-  </ButtonLink>
+  </article>
 </div>
-
-<!-- next/previous posts -->
-{#if previous || next}
-  <hr />
-  <div class="grid gap-8 grid-cols-1 sm:grid-cols-2">
-    {#if previous}
-      <div class="flex flex-col">
-        <h6 class="not-prose post-preview-label">Previous Post</h6>
-        <div class="flex-1 post-preview">
-          <PostPreview post={previous} small />
-        </div>
-      </div>
-    {:else}
-      <div />
-    {/if}
-    {#if next}
-      <div class="flex flex-col">
-        <h6 class="not-prose post-preview-label flex justify-end">Next Post</h6>
-        <div class="flex-1 post-preview">
-          <PostPreview post={next} small />
-        </div>
-      </div>
-    {/if}
-  </div>
-{/if}
-
-<style lang="postcss">
-  .post-preview {
-    @apply flex p-4 border border-slate-300 rounded-lg;
-  }
-
-  .post-preview-label {
-    @apply mb-2 text-slate-500 uppercase text-base font-medium;
-  }
-
-  :global(.dark) .post-preview {
-    @apply border-slate-700;
-  }
-
-  :global(.dark) .post-preview-label {
-    @apply text-slate-400;
-  }
-</style>

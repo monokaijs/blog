@@ -6,50 +6,42 @@
   import SunIcon from 'heroicons-svelte/solid/SunIcon.svelte'
   import { browser } from '$app/env'
   import { name } from '$lib/info'
+  import Sidebar from "$lib/components/Sidebar.svelte";
+import { onMount } from 'svelte';
 
-  let prefersLight = browser ? Boolean(JSON.parse(localStorage.getItem('prefersLight'))) : false
+  let prefersLight = browser ? Boolean(JSON.parse(localStorage.getItem('prefersLight'))) : false;
+  // on
 </script>
 
-<div class="flex flex-col min-h-screen">
-  <div class="mx-auto flex flex-col flex-grow w-full max-w-4xl">
-    <div class="flex h-16 px-4 py-2 justify-between items-center">
-      <h2
-        class="!text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-500 dark:from-violet-500 dark:to-pink-500"
-      >
-        <a class="text-lg sm:text-2xl font-bold" href="/">
-          {name}
-        </a>
-      </h2>
-      {#if browser}
-        <button
-          type="button"
-          role="switch"
-          aria-label="Toggle Dark Mode"
-          aria-checked={!prefersLight}
-          class="h-4 w-4 sm:h-8 sm:w-8 sm:p-1"
-          on:click={() => {
-            prefersLight = !prefersLight
-            localStorage.setItem('prefersLight', prefersLight.toString())
 
-            if (prefersLight) {
-              document.querySelector('html').classList.remove('dark')
-            } else {
-              document.querySelector('html').classList.add('dark')
-            }
-          }}
-        >
-          {#if prefersLight}
-            <MoonIcon class="text-slate-500" />
-          {:else}
-            <SunIcon class="text-slate-400" />
-          {/if}
-        </button>
-      {/if}
-    </div>
-    <main
-      class="prose prose-slate prose-sm sm:prose sm:prose-slate sm:prose-lg sm:max-w-none dark:prose-invert flex flex-col w-full flex-grow py-4 px-4"
-    >
-      <slot />
-    </main>
-  </div>
+<svelte:head>
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    Edward Nguyen :: Space
+  </title>
+
+  <meta name="description" content="Edward Nguyen's Space" />
+  <meta name="author" content="MonokaiJs" />
+
+  <link rel="stylesheet" href="/css/main.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+      integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+      crossorigin="anonymous"
+    />
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+      integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+      crossorigin="anonymous"
+    ></script>
+</svelte:head>
+
+
+<Sidebar/>
+<div class="flex-1">
+  <slot/>
 </div>
